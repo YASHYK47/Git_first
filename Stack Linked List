@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+
+struct Node{
+int info;
+struct Node *next;
+};
+
+typedef struct Node N;
+
+N *start=NULL,*new;
+
+
+void push(int item)
+{ new=(N*)malloc(sizeof(N));
+  new->info=item;
+  new->next=start;
+  start=new;
+}
+
+void pop()
+{ printf("%d is deleted\n",start->info);
+  start=start->next;
+}
+
+void display()
+{ N *temp;
+  temp=start;
+  printf("\nStack now contains\n");
+  while(temp!=NULL)
+  { printf("%d\t",temp->info);
+    temp=temp->next;
+  }
+}
+
+int main()
+{ int item,ch=1;
+  while(ch!=4)
+ { printf("\nEnter your choice\n1-Push  2-Pop  3-Display  4-Exit\n");
+   scanf("%d",&ch);
+   switch(ch)
+  { case 1:{printf("Enter no. to be inserted");
+            scanf("%d",&item);push(item);} break;
+    case 2:pop();break;
+    case 3:display(); break;
+    case 4:end(0);break;
+    default:printf("\nWrong Choice");break;
+  }
+ }  
+return 0;
+}
